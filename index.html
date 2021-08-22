@@ -10,10 +10,13 @@
 </head>
 <body>
 
+    <p id="countdown">1:00</p>
+
     <div class="container">
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-btn" class="btn-grid">
+                <input id="enterscore" class="hide" type="text"/>
                 <button class="btn">Question 1</button>
                 <button class="btn">Question 2</button>
                 <button class="btn">Question 3</button>
@@ -23,9 +26,12 @@
         <div class="controls">
             <button id="start-btn" class="start-btn btn">Start</button>
             <button id="next-btn" class="next-btn btn hide">Next</button>
+            <button id="enter-btn" class="enter-btn btn hide">Enter Score</button>
+            
+            
         </div>
     </div>
-    
+    <button id="highscores-btn" class="btn highscore">Highscores!</button>
 <script src="./assets/script.js"></script>
 </body>
 </html>

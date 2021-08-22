@@ -1,3 +1,8 @@
+p {
+    padding: 20px;
+    font-size: 45px;
+}
+
 * {
     text-align: center;
     box-sizing: border-box;
@@ -54,7 +59,7 @@ body {
     background-color: red;
 }
 
-.start-btn, .next-btn {
+.start-btn, .next-btn, .enter-btn {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
@@ -62,4 +67,9 @@ body {
 
 .hide {
     display: none;
+}
+
+.highscore {
+    margin-left: 20px;
+    
 }
