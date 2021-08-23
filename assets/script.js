@@ -13,14 +13,19 @@ let time = startTime * 60
 var countdownEl = document.getElementById('countdown')
 
 var score = 0
+var correctAmount = 0
+var incorrectAmount = 0
+
+var storage 
 
 let shuffleQuestions, currentQuestion
 
-//setInterval(updateCountdown, 1000)
 
 highscoresButton.addEventListener('click', highScores)
 function highScores() {
-    
+    var points = JSON.parse(localStorage.getItem('scores'))
+   
+    alert(points.name + ' ' + points.score);
 }
 
 startButton.addEventListener('click', startGame)
@@ -30,13 +35,15 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
-
+    correctAmount = 0
     enterButton.classList.add('hide')
     startButton.classList.add('hide')
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     currentQuestion = 0
     questionContainer.classList.remove('hide')
     nextQuestion()
+    setInterval(updateCountdown, 1000)
+    window.setTimeout(endGame, 60000)
     
 }
 
@@ -83,10 +90,10 @@ function selectAnswer(e) {
         endGame()
     }
     //score code goes above
-    var correctAmount = 0
-    var incorrectAmount = 0
+    
     if(correct) {
         correctAmount++
+        console.clear
         console.log(correctAmount)
     } else  {
         incorrectAmount++
@@ -114,16 +121,18 @@ function clearStatusClass(element) {
 
 
 
-//function updateCountdown() {
-    //var minutes = Math.floor(time / 60)
-    //let seconds = time % 60
+function updateCountdown() {
+    var minutes = Math.floor(time / 60)
+    let seconds = time % 60
 
-    //seconds = seconds < 10 ? '0' + seconds : seconds
+    seconds = seconds < 10 ? '0' + seconds : seconds
 
-    //countdownEl.innerHTML = `${minutes}:${seconds}`
-    //time--
-//}
+    countdownEl.innerHTML = `${minutes}:${seconds}`
+    time--
+}
+
 function endGame() {
+    
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
     
@@ -134,15 +143,33 @@ function endGame() {
 }
 
 function enterName() {
-    let name = prompt('Your score is ' + score + ' enter name to save')
-    var storage= name + " " + score
+    let playerName = prompt('Your score is ' + correctAmount + ' enter name to save')
+     //get current highscore
+     var currentHighScore = JSON.parse(localStorage.getItem('scores'));
     
-    localStorage.setItem('scores',  storage)
+     //compare player score with high score
+    if (correctAmount > currentHighScore.score) {
+        var objectToStore = JSON.stringify({name: playerName, score: correctAmount});
+        localStorage.setItem('scores',  objectToStore);
+        alert('Good job! you got the new high score')
 
-    console.log(localStorage)
+    } else {
+        alert('You did not beat the high score of' + ' ' + currentHighScore.score)
+    }
+    //if current high score is higher, show message you didnt beat high score 
+
+    //if beat high score, save current score as new high score
+
+//show message you beat high score
+
+
+
+console.log(localStorage)
 
 
 }
+
+
 
 
 
