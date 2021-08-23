@@ -42,9 +42,6 @@ function startGame() {
     currentQuestion = 0
     questionContainer.classList.remove('hide')
     nextQuestion()
-    setInterval(updateCountdown, 1000)
-    window.setTimeout(endGame, 60000)
-    
 }
 
 function nextQuestion() {
@@ -119,18 +116,6 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-
-
-function updateCountdown() {
-    var minutes = Math.floor(time / 60)
-    let seconds = time % 60
-
-    seconds = seconds < 10 ? '0' + seconds : seconds
-
-    countdownEl.innerHTML = `${minutes}:${seconds}`
-    time--
-}
-
 function endGame() {
     
     startButton.innerText = 'Restart'
@@ -161,19 +146,8 @@ function enterName() {
     //if beat high score, save current score as new high score
 
 //show message you beat high score
-
-
-
 console.log(localStorage)
-
-
 }
-
-
-
-
-
-
 
 var questions = [
     {
